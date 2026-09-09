@@ -237,7 +237,7 @@ function AcheterTickets(){
             placeOccupee = true
             break; 
         }
-    } 
+    }  
     if (placeOccupee === false){
         break
     } 
@@ -318,10 +318,10 @@ function RechercherTicketWithName(){
                 `Place : ${tickets[i].seatNumber}\n` +
                 `Prix : ${tickets[i].price} \n` 
             )
-            trouve = false 
+            trouve = true
         }   
     }
-    if (trouve = false){
+    if (trouve === false){
         console.log("Aucun ticket trouve pour ce passager !")
     }
 } 
@@ -329,7 +329,7 @@ function RechercherTicketWithName(){
 function FiltrerTrajets(){
     let inputVilleDepart = prompt("Entrez la ville de depart: ")
     for (let i=0; i<trips.length; i++){
-        if (trips[i].departure.toLocaleLowerCase() === inputVilleDepart.toLocaleLowerCase){
+        if (trips[i].departure.toLocaleLowerCase() === inputVilleDepart.toLocaleLowerCase()){
             console.log(`#${trips[i].id} ${trips[i].departure} -> ${trips[i].destination} : ${trips[i].price}DH`)
         }
     } 
