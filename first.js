@@ -289,8 +289,36 @@ function AnnulerTicket(){
     
 }
 
+function RechercherTicketWithName(){
+     inputName = prompt("Entrez le nom du passager: ")
+    for (let i=0; i<tickets.length; i++){
+        let trajet= ChercherTrajet(tickets[i].tripId) 
+        if (tickets[i].passengerName === inputName){
+            console.log(
+                `Ticket # ${tickets[i].id}  \n` +  
+                `Passager: : ${tickets[i].passengerName} \n` +
+                `Trajet : ${trajet.departure} -> ${trajet.destination} \n` +
+                `Place : ${tickets[i].seatNumber}\n` +
+                `Prix : ${tickets[i].price} \n` 
+            )
+        }   
+    }
+    return -1 
+} 
 
 
+function TrierTrajets(){
+    for (let i=0; i<trips.length; i++){
+        for (let j=0; j<trips.length-1; j++){
+            if (trips[j].price> trips[j+1].price){
+                let temp = trips[j] 
+                trips[j]= trips[j+1]
+                trips[j+1] = temp
+            }
+        }
+    }
+    console.log(trips)
+}
 
 
 
@@ -370,7 +398,7 @@ do {
             AnnulerTicket()
             break;
         case 5:
-            RechercherTicket()
+            RechercherTicketWithName() 
             break;
         case 6:
             FiltrerTrajets()
@@ -378,8 +406,6 @@ do {
         case 7:
             TrierTrajets()
             break;
-        case 8:
-            console.log(tickets)
         case 0:
             break;
     }
