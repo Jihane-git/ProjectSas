@@ -209,6 +209,8 @@ function ChercherTrajet(idTrajet){
 }
 
 let tickets = [];
+let prochainIdTicket = 1;
+
 function AcheterTickets(){
     let nom= prompt("Entrez le num du passager: ")
     let idTrajet= parseInt( prompt("Entrez l'Identifiant du trajet: ") )   
@@ -224,16 +226,22 @@ function AcheterTickets(){
 } 
     else {
     // creer ticket
-
+    let numeroPlace = 1;
+    for (let i=0; i<tickets.length; i++){
+        if (tickets[i].tripId === idTrajet){
+            numeroPlace ++
+        }
+    }
     let ticket = {
-        id: tickets.length + 1,
+        id: prochainIdTicket,
         passengerName: nom,
         tripId: idTrajet,
-        seatNumber: trajet.availableSeats, 
+        seatNumber: tickets.length +1, 
         price: trajet.price
     };
 
     tickets.push(ticket);
+    prochainIdTicket ++;
     trajet.availableSeats--;
 
     console.log("Ticket acheté avec succes !");
