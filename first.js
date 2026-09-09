@@ -208,7 +208,43 @@ function ChercherTrajet(idTrajet){
     return null;
 }
 
-let tickets = [];
+let tickets = [
+    {
+        id: 1,
+        passengerName: "Ahmed",
+        tripId: 1,
+        seatNumber: 1,
+        price: 50
+    },
+    {
+        id: 2,
+        passengerName: "Sara",
+        tripId: 1,
+        seatNumber: 2,
+        price: 50
+    },
+    {
+        id: 3,
+        passengerName: "Youssef",
+        tripId: 2,
+        seatNumber: 1,
+        price: 30
+    },
+    {
+        id: 4,
+        passengerName: "Fatima",
+        tripId: 3,
+        seatNumber: 1,
+        price: 40
+    },
+    {
+        id: 5,
+        passengerName: "Ahmed",
+        tripId: 2,
+        seatNumber: 2,
+        price: 30
+    }
+];
 let prochainIdTicket = 1;
 
 function AcheterTickets(){
@@ -356,21 +392,14 @@ do {
         "       RAILWAY MANAGER\n" +
 
         "=================================\n" +
-
         "1. Afficher les trajets \n" +
-
         "2. Acheter un ticket \n" +
-
         "3. Afficher les tickets \n" +
-
         "4. Annuler un ticket \n" +
-
         "5. Rechercher un ticket \n" +
-
         "6. Filtrer les trajets \n" +
-
         "7. Trier les trajets \n" +
-
+        "8. Voir les statistiques \n" +
         "0. Quitter \n")
 
     choix = parseInt(prompt("Entrez votre choix: "))
@@ -396,8 +425,29 @@ do {
         case 7:
             TrierTrajets()
             break;
+        case 8:
+            Statistique()    
         case 0:
             break;
     }
 }
 while (choix !== 0) 
+
+function Statistique(){
+    console.log(
+        "================================="+
+                "RAILWAY MANAGER" +
+        "================================="
+    )
+// Nombre total de tickets vendus
+    let nTTickets= tickets.length;
+    console.log(`Nombre total de tickets: ${nTTickets}`) 
+
+// Chiffre d'affaires total
+    let chiffreAffaire = 0; 
+    for(let i=0; i<tickets.length; i++){
+        chiffreAffaire = chiffreAffaire + tickets[i].price
+    } 
+    console.log(`Chiffre d'affaires total: ${chiffreAffaire}`)
+
+}
