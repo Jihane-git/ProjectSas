@@ -9,7 +9,7 @@ const trips = [
         arrivalTime: "08:30",
         price: 25,
         availableSeats: 50
-    },
+    }, 
     {
         id: 2,
         departure: "Safi",
@@ -321,6 +321,14 @@ function TrierTrajets(){
 }
 
 
+function FiltrerTrajets(){
+    let inputVilleDepart = prompt("Entrez la ville de depart: ")
+    for (let i=0; i<trips.length; i++){
+        if (trips[i].departure === inputVilleDepart){
+            console.log(`#${trips[i].id} ${trips[i].departure} -> ${trips[i].destination} : ${trips[i].price}DH`)
+        }
+    } 
+} 
 
 
 
