@@ -226,17 +226,28 @@ function AcheterTickets(){
 } 
     else {
     // creer ticket
-    let numeroPlace = 1;
+    let numeroPlace = 1; 
+    while (true){
+        let placeOccupee = false; 
+    
     for (let i=0; i<tickets.length; i++){
-        if (tickets[i].tripId === idTrajet){
-            numeroPlace ++
+        if (tickets[i].tripId === idTrajet &&
+            tickets[i].seatNumber === numeroPlace 
+        ){ 
+            placeOccupee = true
+            break; 
         }
-    }
+    } 
+    if (placeOccupee === false){
+        break
+    } 
+    numeroPlace ++;
+}
     let ticket = {
         id: prochainIdTicket,
         passengerName: nom,
         tripId: idTrajet,
-        seatNumber: tickets.length +1, 
+        seatNumber: numeroPlace, 
         price: trajet.price
     };
 
