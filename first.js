@@ -182,7 +182,7 @@ const trips = [
         availableSeats: 50
     }
 ];
-
+// function case
 function AfficherTrajets() {
     console.log("=== TRAJETS DISPONIBLES ===")
     for (let i = 0; i < trips.length; i++) {
@@ -192,13 +192,12 @@ function AfficherTrajets() {
                 `Depart : ${trips[i].departureTime} \n` +
                 `Arrivee : ${trips[i].arrivalTime} \n` +
                 `Prix : ${trips[i].price} \n` +
-                `Places disponibles : ${trips[i].availableSeats} \n` 
-               
-            )
-        }
+                `Places disponibles : ${trips[i].availableSeats} \n`         
+            ) 
+        } 
     } 
 } 
-
+// function support
 function ChercherTrajet(idTrajet){
     for (let i=0; i<trips.length; i++){
         if (trips[i].id === idTrajet){
@@ -246,23 +245,25 @@ let tickets = [
     }
 ]; 
 let prochainIdTicket = tickets.length + 1;
+// les tickets existants et diminuer les places 
 for (let i = 0; i < tickets.length; i++) {
 
     let trajet = ChercherTrajet(tickets[i].tripId);
 
     trajet.availableSeats--; 
 } 
-
+// function case
 function AcheterTickets(){
     let nom= prompt("Entrez le num du passager: ")
     let idTrajet= parseInt( prompt("Entrez l'Identifiant du trajet: ") )   
     
 // verifier si id existe  
     let trajet =  ChercherTrajet(idTrajet) 
-// ------------------------------  
+// si le trajet est introuvable
     if (trajet === null) { 
     console.log("Trajet introuvable.");
-} 
+}  
+// si le train est complet 
     else if (trajet.availableSeats === 0) {
     console.log("Train complet.");
 } 
@@ -293,15 +294,21 @@ function AcheterTickets(){
         price: trajet.price
     };
 
-    tickets.push(ticket);
+    tickets.push(ticket); 
     prochainIdTicket ++;
     trajet.availableSeats--;
 
-    console.log("Ticket acheté avec succes !");
-
+    console.log(`Ticket acheté avec succes ! `);
+    console.log(
+                `Ticket # ${ticket.id}  \n` +  
+                `Passager: : ${ticket.passengerName} \n` +
+                `Trajet : ${trajet.departure} -> ${trajet.destination} \n` +
+                `Prix : ${ticket.price} \n` +
+                `Place : ${ticket.seatNumber}\n`  
+            )
 }
 } 
-
+// function case
 function AfficherTickets(){
     if (tickets.length === 0){
         console.log("Aucun ticket achete")
@@ -319,7 +326,7 @@ function AfficherTickets(){
             )
     } 
 }
-
+// function support
 function ChercherTicket(idTicket){
     for (let i=0; i<tickets.length; i++){
         if (tickets[i].id === idTicket ) {
@@ -328,7 +335,7 @@ function ChercherTicket(idTicket){
     }
     return -1
 }
-
+// function case
 function AnnulerTicket(){
     let idTicketUser = parseInt(prompt("Entrez l'identifiant du ticket: ")) ;
     let index = ChercherTicket(idTicketUser);
@@ -345,13 +352,13 @@ function AnnulerTicket(){
     }
     
 }
-
+// function case
 function RechercherTicketWithName(){
     let inputName = prompt("Entrez le nom du passager: ")
     let trouve =false
     for (let i=0; i<tickets.length; i++){
         let trajet= ChercherTrajet(tickets[i].tripId) 
-        if (tickets[i].passengerName.toLocaleLowerCase() === inputName.toLocaleLowerCase()){
+        if (tickets[i].passengerName.toLocaleLowerCase().trim() === inputName.toLocaleLowerCase().trim()){
             console.log(
                 `Ticket # ${tickets[i].id}  \n` +  
                 `Passager: : ${tickets[i].passengerName} \n` +
@@ -366,13 +373,13 @@ function RechercherTicketWithName(){
         console.log("Aucun ticket trouve pour ce passager !")
     }
 } 
-
+// function case
 function FiltrerTrajets(){
 
     let inputVilleDepart = prompt("Entrez la ville de depart: ");
     let trouve = false;
     for (let i = 0; i < trips.length; i++){
-        if (trips[i].departure.toLocaleLowerCase() === inputVilleDepart.toLocaleLowerCase()){
+        if (trips[i].departure.toLocaleLowerCase().trim() === inputVilleDepart.toLocaleLowerCase().trim()){
             console.log(
                 `#${trips[i].id} ${trips[i].departure} -> ${trips[i].destination} : ${trips[i].price}DH`
             );
@@ -383,7 +390,7 @@ function FiltrerTrajets(){
         console.log("Aucun trajet trouve pour cette ville.");
     }
 }
-
+// function case
 function TrierTrajets(){
     let tableauTrier = [...trips];
     for (let i=0; i<tableauTrier.length-1; i++){
@@ -401,7 +408,7 @@ function TrierTrajets(){
         );
     }
 }
-
+// function case
 function Statistique(){
     console.log(
         "================================="+
@@ -466,6 +473,8 @@ do {
             break;  
         case 0:
             break;
+        default:
+            console.log("Merci de choisir un numero parmi ceux proposés.")
     }
 }
 while (choix !== 0) 
