@@ -203,13 +203,13 @@ function ChercherTrajet(idTrajet){
     for (let i=0; i<trips.length; i++){
         if (trips[i].id === idTrajet){
             return trips[i]
-        }
-    }
-    return null;
+        } 
+    } 
+    return null; 
 }
 
 let tickets = [
-    {
+     {
         id: 1,
         passengerName: "Ahmed",
         tripId: 1,
@@ -244,8 +244,8 @@ let tickets = [
         seatNumber: 2,
         price: 30
     }
-];
-let prochainIdTicket = 1;
+]; 
+let prochainIdTicket = tickets.length + 1;
 
 function AcheterTickets(){
     let nom= prompt("Entrez le num du passager: ")
@@ -346,7 +346,7 @@ function RechercherTicketWithName(){
     let trouve =false
     for (let i=0; i<tickets.length; i++){
         let trajet= ChercherTrajet(tickets[i].tripId) 
-        if (tickets[i].passengerName === inputName){
+        if (tickets[i].passengerName.toLocaleLowerCase() === inputName.toLocaleLowerCase()){
             console.log(
                 `Ticket # ${tickets[i].id}  \n` +  
                 `Passager: : ${tickets[i].passengerName} \n` +
@@ -363,25 +363,34 @@ function RechercherTicketWithName(){
 } 
 
 function FiltrerTrajets(){
-    let inputVilleDepart = prompt("Entrez la ville de depart: ")
-    for (let i=0; i<trips.length; i++){
-        if (trips[i].departure.toLocaleLowerCase() === inputVilleDepart.toLocaleLowerCase()){
-            console.log(`#${trips[i].id} ${trips[i].departure} -> ${trips[i].destination} : ${trips[i].price}DH`)
-        }
-    } 
-} 
 
-function TrierTrajets(){
-    for (let i=0; i<trips.length-1; i++){
-        for (let j=0; j<trips.length-1; j++){
-            if (trips[j].price> trips[j+1].price){
-                let temp = trips[j] 
-                trips[j]= trips[j+1]
-                trips[j+1] = temp
-            }
+    let inputVilleDepart = prompt("Entrez la ville de depart: ");
+    let trouve = false;
+    for (let i = 0; i < trips.length; i++){
+        if (trips[i].departure.toLocaleLowerCase() === inputVilleDepart.toLocaleLowerCase()){
+            console.log(
+                `#${trips[i].id} ${trips[i].departure} -> ${trips[i].destination} : ${trips[i].price}DH`
+            );
+            trouve = true;
         }
     }
-    console.log(trips)
+    if (trouve === false){
+        console.log("Aucun trajet trouve pour cette ville.");
+    }
+}
+
+function TrierTrajets(){
+    let tableauTrier = [...trips];
+    for (let i=0; i<tableauTrier.length-1; i++){
+        for (let j=0; j<tableauTrier.length-1; j++){
+            if (tableauTrier[j].price> tableauTrier[j+1].price){
+                let temp = tableauTrier[j] 
+                tableauTrier[j]= tableauTrier[j+1]
+                tableauTrier[j+1] = temp
+            }
+        }
+    } 
+    console.log(tableauTrier) 
 }
 
 let choix;
@@ -426,7 +435,8 @@ do {
             TrierTrajets()
             break;
         case 8:
-            Statistique()    
+            Statistique()  
+            break;  
         case 0:
             break;
     }
@@ -449,5 +459,4 @@ function Statistique(){
         chiffreAffaire = chiffreAffaire + tickets[i].price
     } 
     console.log(`Chiffre d'affaires total: ${chiffreAffaire}`)
-
 }
