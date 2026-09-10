@@ -192,7 +192,7 @@ function AfficherTrajets() {
                 `Depart : ${trips[i].departureTime} \n` +
                 `Arrivee : ${trips[i].arrivalTime} \n` +
                 `Prix : ${trips[i].price} \n` +
-                `Places disponibles : ${trips[i].availableSeats}` 
+                `Places disponibles : ${trips[i].availableSeats} \n` 
                
             )
         }
@@ -296,7 +296,6 @@ function AcheterTickets(){
 }
 } 
 
-
 function AfficherTickets(){
     if (tickets.length === 0){
         console.log("Aucun ticket achete")
@@ -393,6 +392,24 @@ function TrierTrajets(){
     console.log(tableauTrier) 
 }
 
+function Statistique(){
+    console.log(
+        "================================="+
+                "RAILWAY MANAGER" +
+        "================================="
+    )
+// Nombre total de tickets vendus
+    let nTTickets= tickets.length;
+    console.log(`Nombre total de tickets: ${nTTickets}`) 
+
+// Chiffre d'affaires total
+    let chiffreAffaire = 0; 
+    for(let i=0; i<tickets.length; i++){
+        chiffreAffaire = chiffreAffaire + tickets[i].price
+    } 
+    console.log(`Chiffre d'affaires total: ${chiffreAffaire}`)
+}
+
 let choix;
 do {
     console.log(
@@ -442,21 +459,3 @@ do {
     }
 }
 while (choix !== 0) 
-
-function Statistique(){
-    console.log(
-        "================================="+
-                "RAILWAY MANAGER" +
-        "================================="
-    )
-// Nombre total de tickets vendus
-    let nTTickets= tickets.length;
-    console.log(`Nombre total de tickets: ${nTTickets}`) 
-
-// Chiffre d'affaires total
-    let chiffreAffaire = 0; 
-    for(let i=0; i<tickets.length; i++){
-        chiffreAffaire = chiffreAffaire + tickets[i].price
-    } 
-    console.log(`Chiffre d'affaires total: ${chiffreAffaire}`)
-}
