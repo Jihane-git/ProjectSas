@@ -246,6 +246,12 @@ let tickets = [
     }
 ]; 
 let prochainIdTicket = tickets.length + 1;
+for (let i = 0; i < tickets.length; i++) {
+
+    let trajet = ChercherTrajet(tickets[i].tripId);
+
+    trajet.availableSeats--; 
+} 
 
 function AcheterTickets(){
     let nom= prompt("Entrez le num du passager: ")
@@ -389,7 +395,11 @@ function TrierTrajets(){
             }
         }
     } 
-    console.log(tableauTrier) 
+    for (let i = 0; i < tableauTrier.length; i++) {
+        console.log(
+            `${tableauTrier[i].departure} → ${tableauTrier[i].destination} : ${tableauTrier[i].price} DH \n`
+        );
+    }
 }
 
 function Statistique(){
